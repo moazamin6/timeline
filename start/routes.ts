@@ -19,7 +19,28 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import Application from "@ioc:Adonis/Core/Application";
+
+Route.group(() => {
+
+  Route.post('/user/login', 'LoginController.login')
+  Route.post('/user/register', 'LoginController.register')
+}).prefix('/v1')
 
 Route.get('/', async () => {
-  return {hello: 'world'}
+
+  return {hello: Application.publicPath()}
+})
+
+console.log(Application.publicPath())
+Route.post('/file', async ({request}) => {
+
+  const coverImage = request.file('cover_image')
+  // return coverImage?.toJSON()
+  if (coverImage) {
+    // return coverImage.tmpPath;
+    return coverImage.move(Application.tmpPath('uploads'), {overwrite: true})
+  }
+
+  return {hello: Application.tmpPath('')}
 })
