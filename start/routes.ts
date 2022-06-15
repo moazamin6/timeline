@@ -25,6 +25,8 @@ Route.group(() => {
 
   Route.post('/user/login', 'LoginController.login')
   Route.post('/user/register', 'LoginController.register')
+
+  Route.get('image/:fileName', 'HelperController.getFile')
 }).prefix('/v1')
 
 Route.get('/', async () => {
@@ -32,7 +34,7 @@ Route.get('/', async () => {
   return {hello: Application.publicPath()}
 })
 
-console.log(Application.publicPath())
+
 Route.post('/file', async ({request}) => {
 
   const coverImage = request.file('cover_image')

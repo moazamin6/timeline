@@ -18,7 +18,7 @@ export default class CreateUserValidator {
 
     date_of_birth: schema.string(),
 
-    image_url: schema.file({
+    image_url: schema.file.optional({
       size: '2mb',
       extnames: ['jpg', 'jpeg', 'png'],
     }),

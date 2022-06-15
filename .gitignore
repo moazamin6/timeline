@@ -6,3 +6,4 @@ coverage
 .env
 .idea
 tmp
+public/image_assets
