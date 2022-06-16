@@ -80,14 +80,14 @@ export default class LoginController extends BaseController {
 
   public async register(ctx) {
 
-    await Mail.send((message) => {
-      message
-        .from('moazamin6@gmail.com')
-        .to('moaz@vfairs.com')
-        .subject('Welcome Onboard!')
-        .htmlView('emails/otp', { name: 'Virk' })
-    })
-    return 111
+    // await Mail.send((message) => {
+    //   message
+    //     .from('moazamin6@gmail.com')
+    //     .to('moaz@vfairs.com')
+    //     .subject('Welcome Onboard!')
+    //     .htmlView('emails/otp', { name: 'Virk' })
+    // })
+    // return 111
     const userData = ctx.request.body()
 
     await ctx.request.validate(CreateUserValidator)
