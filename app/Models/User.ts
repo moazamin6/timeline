@@ -24,6 +24,12 @@ export default class User extends BaseModel {
   @column({columnName: 'image_url'})
   public image_url: string
 
+  @column({columnName: 'is_enabled'})
+  public is_enabled: number
+
+  @column({columnName: 'is_deleted'})
+  public is_deleted: number
+
   @column.dateTime({autoCreate: true})
   public created_at: DateTime
 
