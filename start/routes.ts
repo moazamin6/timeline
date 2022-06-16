@@ -27,6 +27,8 @@ Route.group(() => {
   Route.post('/user/register', 'LoginController.register')
 
   Route.get('image/:fileName', 'HelperController.getFile')
+
+  Route.get('/user/list', 'UserController.list')
 }).prefix('/v1')
 
 Route.get('/', async () => {

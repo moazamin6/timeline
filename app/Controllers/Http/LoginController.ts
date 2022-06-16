@@ -115,13 +115,6 @@ export default class LoginController extends BaseController {
           .update({image_url: file_name})
       }
 
-      await Mail.send((message) => {
-        message
-          .from('moazamin6@gmail.com')
-          .to('moaz@vfairs.com')
-          .subject('Welcome Onboard!')
-          .htmlView('emails/otp', { name: 'Virk' })
-      })
       ctx.response.status(201)
       return {
         status: true,
