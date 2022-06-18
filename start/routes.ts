@@ -14,7 +14,7 @@ Route.group(() => {
 
 Route.get('/', async () => {
 
-  return {hello: Application.publicPath()}
+  return {message: 'This is AdonisJs Application'}
 })
 
 
