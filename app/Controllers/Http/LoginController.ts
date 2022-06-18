@@ -215,22 +215,34 @@ export default class LoginController extends BaseController {
     }
 
     const user = await User.getUserByUserId(user_id)
-    const otp_code = Math.floor(1000 + Math.random() * 9000);
-    const otp_id = await Otp.addOtpCode(user.id, otp_code);
 
-    await CommonHelper.sendEmail('moazamin6@gmail.com', user.email, 'OTP Verification Email', 'emails/otp', {
-      name: `${user.first_name} ${user.last_name}`,
-      otp: otp_code
-    })
+    if (user) {
 
-    ctx.response.status(200)
-    return {
-      status: true,
-      message: `OTP sent to ${user.email}.`,
-      data: {
-        otp_id: otp_id[0],
-        otp_code: otp_code
+      const otp_code = Math.floor(1000 + Math.random() * 9000);
+      const otp_id = await Otp.addOtpCode(user.id, otp_code);
+
+      await CommonHelper.sendEmail('moazamin6@gmail.com', user.email, 'OTP Verification Email', 'emails/otp', {
+        name: `${user.first_name} ${user.last_name}`,
+        otp: otp_code
+      })
+
+      ctx.response.status(200)
+      return {
+        status: true,
+        message: `OTP sent to ${user.email}.`,
+        data: {
+          otp_id: otp_id[0],
+          otp_code: otp_code
+        }
+      }
+    } else {
+
+      ctx.response.status(422)
+      return {
+        status: false,
+        message: `User not found`,
       }
     }
+
   }
 }

@@ -44,6 +44,7 @@
     "@japa/preset-adonis/TestsProvider"
   ],
   "metaFiles": [
+    ".env",
     {
       "pattern": "resources/views/**/*.edge",
       "reloadServer": false
