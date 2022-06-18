@@ -14,7 +14,7 @@ Route.group(() => {
 
 Route.get('/', async () => {
 
-  return {message: 'This is AdonisJs Application with runner updated'}
+  return {message: 'This is Runner Testing'}
 })
 
 
