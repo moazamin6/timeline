@@ -14,7 +14,7 @@ Route.group(() => {
 
 Route.get('/', async () => {
 
-  return {message: 'This is Runner Testing'}
+  return {message: 'This is Runner Testinggg'}
 })
 
 
