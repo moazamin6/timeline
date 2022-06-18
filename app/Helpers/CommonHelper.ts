@@ -1,6 +1,5 @@
-import {DateTime} from 'luxon'
-import {BaseModel, beforeSave, column} from '@ioc:Adonis/Lucid/Orm'
 import Hash from "@ioc:Adonis/Core/Hash";
+import Mail from "@ioc:Adonis/Addons/Mail";
 
 export default class CommonHelper {
 
@@ -17,5 +16,15 @@ export default class CommonHelper {
     token = token.substring(0, 50);
     const hash = await Hash.make(user_id.toString())
     return `${token}.${hash}`
+  }
+
+  public static async sendEmail(from: string, to: string, subject: string, template: string, data: object) {
+
+    await Mail.send((message) => {
+      message.from(from)
+        .to(to)
+        .subject(subject)
+        .htmlView(template, data)
+    })
   }
 }

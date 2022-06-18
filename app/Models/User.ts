@@ -1,6 +1,7 @@
 import {DateTime} from 'luxon'
 import {BaseModel, beforeSave, column} from '@ioc:Adonis/Lucid/Orm'
 import Hash from "@ioc:Adonis/Core/Hash";
+import Database from "@ioc:Adonis/Lucid/Database";
 
 export default class User extends BaseModel {
   @column({isPrimary: true})
@@ -14,6 +15,9 @@ export default class User extends BaseModel {
 
   @column()
   public email: string
+
+  @column({columnName: 'is_email_verified'})
+  public is_email_verified: number
 
   @column({serializeAs: null})
   public password: string
@@ -41,5 +45,19 @@ export default class User extends BaseModel {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
     }
+  }
+
+  public static async updateEmailVerificationStatus(user_id, status) {
+
+    return Database
+      .from('users')
+      .returning('id')
+      .where('id', user_id)
+      .update({is_email_verified: status})
+  }
+
+  public static async getUserByUserId(user_id) {
+
+    return Database.from('users').where('id', user_id).first()
   }
 }

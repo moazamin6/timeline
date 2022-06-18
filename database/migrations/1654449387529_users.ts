@@ -9,7 +9,7 @@ export default class UsersSchema extends BaseSchema {
       table.string('first_name', 255).nullable()
       table.string('last_name', 255).nullable()
       table.string('email', 255).notNullable()
-      table.tinyint('email_verified').nullable()
+      table.tinyint('is_email_verified').nullable()
       table.string('password', 180).notNullable()
       table.date('date_of_birth').nullable()
       table.string('image_url', 255).nullable()

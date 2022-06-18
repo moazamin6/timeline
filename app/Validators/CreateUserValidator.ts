@@ -1,10 +1,12 @@
 import {schema, CustomMessages, rules} from '@ioc:Adonis/Core/Validator'
 import type {HttpContextContract} from '@ioc:Adonis/Core/HttpContext'
+import {CreateUserReporter} from "App/Validators/Reporters/CreateUserReporter";
 
 export default class CreateUserValidator {
   constructor(protected ctx: HttpContextContract) {
   }
 
+  // public reporter = CreateUserReporter
   public schema = schema.create({
     first_name: schema.string(),
     last_name: schema.string(),
@@ -25,18 +27,18 @@ export default class CreateUserValidator {
   })
 
   public messages: CustomMessages = {
-    'first_name.required': 'First Name is required',
+    'first_name.required': 'Please fill all required fields',
 
-    'last_name.required': 'Last Name is required',
+    'last_name.required': 'Please fill all required fields',
 
-    'email.required': 'Email is required',
+    'email.required': 'Please fill all required fields',
     'email.email': 'Please provide valid email',
     'email.unique': 'User already exist with this email',
 
-    'password.required': 'Password is required',
+    'password.required': 'Please fill all required fields',
     'password_confirmed.confirmed': 'Please confirm your password',
 
-    'date_of_birth.required': 'Date of Birth is required',
+    'date_of_birth.required': 'Please fill all required fields',
 
     'image_url.file': 'Image'
   }
