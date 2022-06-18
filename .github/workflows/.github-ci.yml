@@ -29,3 +29,4 @@ jobs:
     - run: npm i
     - run: node ace build --production
     - run: pm2 restart timeline
+    - run: cp /var/www/api.moazamin6.com/.env /var/www/api.moazamin6.com/actions-runner/_work/timeline/timeline/build/
